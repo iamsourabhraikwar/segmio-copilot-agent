@@ -1,0 +1,6 @@
+google-adk[a2a]
+google-cloud-aiplatform[agent_engines,adk]
+google-genai
+cloudpickle==3.0
+mcp
+google-cloud-storage

@@ -1,0 +1,74 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Segmio MCP Server API",
+    "description": "Model Context Protocol tools for Segmio E-commerce Co-Pilot",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/hackathon/mcp": {
+      "post": {
+        "summary": "Execute MCP tools (mongodb_mcp or trigger_segmio_pipeline)",
+        "description": "JSON-RPC 2.0 transport for calling tools discovered by the Agent Builder.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "jsonrpc": { "type": "string", "example": "2.0" },
+                  "method": { "type": "string", "example": "tools/call" },
+                  "id": { "type": "integer", "example": 1 },
+                  "params": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string", "example": "mongodb_mcp" },
+                      "arguments": {
+                        "type": "object",
+                        "properties": {
+                          "query": { "type": "string", "description": "Product lookup query" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful tool execution",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jsonrpc": { "type": "string", "example": "2.0" },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "content": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "type": { "type": "string", "example": "text" },
+                              "text": { "type": "string", "description": "Stringified JSON response payload" }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "id": { "type": "integer", "example": 1 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
