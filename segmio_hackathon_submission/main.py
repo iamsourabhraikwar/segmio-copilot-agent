@@ -8,7 +8,7 @@ Connects to the Segmio MCP Server (Streamable HTTP) for:
 """
 
 import vertexai
-from agent import root_agent, MyAdkApp, create_gcs_session_service
+from agent import root_agent, MyAdkApp, GCSSessionService, create_gcs_session_service
 
 # ─── Configuration ───────────────────────────────────────────────────────────
 PROJECT_ID = "segmio-v1-42520"
@@ -44,7 +44,7 @@ if __name__ == "__main__":
             "mcp",
             "cloudpickle==3.0",
         ],
-        extra_packages=["agent.py"],
+        extra_packages=["agent.py", "service-account-key.json"],
         display_name="Segmio E-commerce Co-Pilot",
         description="AI agent that searches product inventory and generates promotional videos via MCP",
     )
