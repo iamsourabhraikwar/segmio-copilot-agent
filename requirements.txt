@@ -1,7 +1,0 @@
-google-adk[a2a]
-google-cloud-aiplatform[agent_engines,adk]
-google-genai
-google-cloud-storage
-cloudpickle==3.0
-mcp
-streamlit
