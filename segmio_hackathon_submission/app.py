@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import vertexai
 from vertexai.preview import reasoning_engines
@@ -7,9 +8,9 @@ st.set_page_config(page_title="Segmio Co-Pilot", page_icon="🤖")
 st.title("Segmio E-commerce Production Co-Pilot")
 st.markdown("This agent connects to MongoDB via MCP, drafts video scripts, and coordinates the Segmio video rendering pipeline.")
 
-# Default settings based on main.py
-DEFAULT_PROJECT_ID = "segmio-v1-42520"
-DEFAULT_LOCATION = "us-west1"
+# Default settings
+DEFAULT_PROJECT_ID = os.environ.get("GCP_PROJECT_ID", "segmio-v1-42520")
+DEFAULT_LOCATION = os.environ.get("GCP_LOCATION", "us-west1")
 
 st.sidebar.header("Configuration")
 project_id = st.sidebar.text_input("GCP Project ID", value=DEFAULT_PROJECT_ID)

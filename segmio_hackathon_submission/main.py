@@ -7,13 +7,14 @@ Connects to the Segmio MCP Server (Streamable HTTP) for:
   - trigger_segmio_pipeline: Trigger multi-scene AI video rendering
 """
 
+import os
 import vertexai
-from agent import root_agent, MyAdkApp, GCSSessionService, create_gcs_session_service
+from agent import root_agent, MyAdkApp, create_gcs_session_service
 
 # ─── Configuration ───────────────────────────────────────────────────────────
-PROJECT_ID = "segmio-v1-42520"
-LOCATION = "us-west1"
-STAGING_BUCKET = f"gs://{PROJECT_ID}-agent-staging"
+PROJECT_ID = os.environ.get("GCP_PROJECT_ID", "segmio-v1-42520")
+LOCATION = os.environ.get("GCP_LOCATION", "us-west1")
+STAGING_BUCKET = os.environ.get("GCS_STAGING_BUCKET", f"gs://{PROJECT_ID}-agent-staging")
 
 # ─── Initialize Vertex AI ────────────────────────────────────────────────────
 vertexai.init(project=PROJECT_ID, location=LOCATION, staging_bucket=STAGING_BUCKET)

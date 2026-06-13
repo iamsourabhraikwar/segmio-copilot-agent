@@ -17,6 +17,7 @@ if not has_getattribute:
         return (obj, parent)
     cloudpickle.cloudpickle._getattribute = custom_cloudpickle_getattribute
 
+import os
 from functools import cached_property
 import cloudpickle
 from google.cloud import storage
@@ -122,7 +123,6 @@ class GCSSessionService(InMemorySessionService):
     @property
     def storage_client(self):
         if self._storage_client is None:
-            import os
             key_name = "service-account-key.json"
             if os.path.exists(key_name):
                 print(f"[GCSSessionService] Loading storage credentials from local {key_name}")
@@ -270,4 +270,5 @@ class GCSSessionService(InMemorySessionService):
 
 
 def create_gcs_session_service():
-    return GCSSessionService(bucket_name="segmio-v1-42520-agent-staging")
+    bucket_name = os.environ.get("GCS_SESSION_BUCKET", "segmio-v1-42520-agent-staging")
+    return GCSSessionService(bucket_name=bucket_name)
