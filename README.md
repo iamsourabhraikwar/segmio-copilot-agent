@@ -3,7 +3,6 @@
 ## Overview
 This is an AI Technical Director agent powered by **Gemini 3.5 Flash** and **Google Cloud Agent Builder**. It connects to MongoDB store inventory via MCP, drafts promotional video scripts, and coordinates sequential rendering pipelines with visual continuity on Segmio.
 
-This project was built for the **Build with Gemini XPRIZE** hackathon.
 
 ## Live Demo
 - **Web App:** [https://segmio.ai/agent](https://segmio.ai/agent)
